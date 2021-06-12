@@ -8,7 +8,7 @@ git config --global user.name "CI"
 git config --global user.email "ci@ci.com"
 
 git_json="{\"git\":{\"owner\":\"${owner_name}\",\"name\":\"${project_name}\"}}"
-echo "GIT JSON:
+echo "GIT JSON:"
 echo "${git_json}"
 echo
 
