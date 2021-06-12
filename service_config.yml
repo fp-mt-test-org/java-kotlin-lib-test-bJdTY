@@ -5,7 +5,7 @@ flex:
       command: pip3 install battenberg
     initialize-template:
       depends-on: setup-dependencies
-      command: github_base_url=https://github.com/fp-mt-test-org template_name=template-java-kotlin-library project_name=java-kotlin-lib-test-bJdTY owner_name=fp-mt-test-org ./initialize-template.sh
+      command: github_base_url=https://github.com/fp-mt-test-org template_name=template-java-kotlin-library project_name=java-kotlin-lib-test-bJdTY owner_name=fp-mt-test-org ./initialize-template.sh || true && echo .cookiecutter.json
     update-template:
       depends-on: setup-dependencies
       command: battenberg upgrade --no-input
