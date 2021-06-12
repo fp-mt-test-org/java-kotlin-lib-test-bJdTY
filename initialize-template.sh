@@ -55,8 +55,6 @@ cat .cookiecutter.json
 # such as merge conflicts.
 
 echo
-echo "${battenberg_output}"
-echo
 echo "Checking for MergeConflictExceptions..."
 echo
 if [[ "${battenberg_output}" =~ "MergeConflictException" ]]; then
