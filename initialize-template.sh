@@ -5,6 +5,7 @@ set -o pipefail
 set -o nounset
 
 git config --global user.name "CI"
+git config --global user.email "ci@ci.com"
 
 # This codeblock answers the prompts issued by battenberg below.
 {
