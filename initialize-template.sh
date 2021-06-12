@@ -4,6 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+git config --global user.name "CI"
+
 # This codeblock answers the prompts issued by battenberg below.
 {
     # You've downloaded .../.cookiecutters/template-java-kotlin-library before.
