@@ -4,8 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-#git config --global user.name "CI"
-#git config --global user.email "ci@ci.com"
+git config --global user.name "CI"
+git config --global user.email "ci@ci.com"
 
 git_json="{\"git\":{\"owner\":\"${owner_name}\",\"name\":\"${project_name}\"}}"
 echo "GIT JSON:"
