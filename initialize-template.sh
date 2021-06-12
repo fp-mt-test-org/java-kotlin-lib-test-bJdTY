@@ -45,4 +45,7 @@ echo
 
     # destination [default]:
     echo "${git_json}"
-} | battenberg install "${github_base_url}/${template_name}"
+} | battenberg install "${github_base_url}/${template_name}" || true
+
+cat .cookiecutter.json
+
