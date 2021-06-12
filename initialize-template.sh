@@ -49,3 +49,43 @@ echo
 } | battenberg install "${github_base_url}/${template_name}" || true
 
 cat .cookiecutter.json
+
+# The "|| true" above is to prevent this script from failing
+# in the event that initialize-template.sh fails due to errors,
+# such as merge conflicts.
+
+echo
+echo "${battenberg_output}"
+echo
+echo "Checking for MergeConflictExceptions..."
+echo
+if [[ "${battenberg_output}" =~ "MergeConflictException" ]]; then
+    template_context_file='.cookiecutter.json'
+    echo "Merge Conflict Detected, attempting to resolve!"
+
+    # Remove all instances of:
+    # <<<<<<< HEAD
+    # ...
+    # =======
+    
+    # And
+
+    # Remove all instances of:
+    # >>>>>>> 0000000000000000000000000000000000000000
+    
+    cookiecutter_json_updated=$(cat ${template_context_file} | \
+        perl -0pe 's/<<<<<<< HEAD[\s\S]+?=======//gms' | \
+        perl -0pe 's/>>>>>>> [a-z0-9]{40}//gms')
+
+    echo "${cookiecutter_json_updated}" > "${template_context_file}"
+    echo
+    echo "Conflicts resolved, committing..."
+    git add "${template_context_file}"
+    git commit -m "fix: Resolved merge conflicts with template."
+else
+    echo "No merge conflicts detected."
+    exit 1
+fi
+
+echo
+cat .cookiecutter.json
