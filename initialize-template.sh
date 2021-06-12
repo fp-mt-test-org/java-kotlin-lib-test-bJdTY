@@ -7,6 +7,11 @@ set -o nounset
 git config --global user.name "CI"
 git config --global user.email "ci@ci.com"
 
+git_json="{\"git\":{\"owner\":\"${owner_name}\",\"name\":\"${project_name}\"}}"
+echo "GIT JSON:
+echo "${git_json}"
+echo
+
 # This codeblock answers the prompts issued by battenberg below.
 {
     # You've downloaded .../.cookiecutters/template-java-kotlin-library before.
@@ -39,5 +44,5 @@ git config --global user.email "ci@ci.com"
     sleep 1;
 
     # destination [default]:
-    echo "{\"git\":{\"owner\":\"${owner_name}\",\"name\":\"${project_name}\"}}"
+    echo "${git_json}"
 } | battenberg install "${github_base_url}/${template_name}"
